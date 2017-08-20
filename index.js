@@ -35,6 +35,8 @@ function addItemToList (item) {
     </li>
   `);
 
+  $('.js-shopping-list-entry').val('');
+
 }
 
 function handleFormSubmission () {
@@ -52,7 +54,7 @@ function handleFormSubmission () {
 
 }
 
-// check/uncheck functions
+// check/uncheck/delete functions
 function checkItem (itemToCheck, btnClicked) {
 
   // check the item
@@ -101,19 +103,30 @@ function toggleItemChecking (checkBtnClicked) {
 
 }
 
+function deleteItem (deleteBtnClicked) {
+
+  // get parent li of check btn clicked
+  const parentLi = $(deleteBtnClicked).closest('li');
+
+  // remove it
+  $(parentLi).remove();
+
+}
+
 function handleBtnClicks () {
 
-  // make sure a check/uncheck btn was clicked
+  // if a check/uncheck btn was clicked
   if ($(event.target).html() === 'check' || $(event.target).html() === 'uncheck'){
 
     toggleItemChecking(event.target);
 
   }
 
+  // if a delete btn was clicked
   else if ($(event.target).html() === 'delete') {
 
     // delete item
-    console.log(event.target);
+    deleteItem(event.target);
 
   }
 
@@ -148,7 +161,7 @@ $(function(){
 
   });
 
-  // add listener for check button clicks
+  // add listener for button clicks
   $('.shopping-list').click( event => {
 
     handleBtnClicks();
