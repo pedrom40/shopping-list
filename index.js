@@ -148,11 +148,7 @@ function correctCheckBtns () {
 
 }
 
-$(function(){
-
-  // correct btn text for checked items
-  correctCheckBtns();
-
+function formSubmitListener () {
   // add listener for form submit
   $('#js-shopping-list-form').submit(function(){
     event.preventDefault();
@@ -160,12 +156,23 @@ $(function(){
     handleFormSubmission();
 
   });
+}
 
+function btnClickLister () {
   // add listener for button clicks
   $('.shopping-list').click( event => {
 
     handleBtnClicks();
 
   });
+}
 
-});
+function initShoppingApp () {
+
+  correctCheckBtns();
+  formSubmitListener();
+  btnClickLister();
+
+}
+
+$(initShoppingApp);
